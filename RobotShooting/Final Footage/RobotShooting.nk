@@ -1,0 +1,701 @@
+#! C:/Program Files/Nuke13.0v2/nuke-13.0.2.dll -nx
+#write_info Write1 file:"C:/Users/lenovo/Desktop/NUKE/Getting Started with NUKE/RobotShooting/RobotShooting_%03d.mov" format:"1280 720 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1 70" fps:"0" colorspace:"default (Gamma2.2)" datatype:"unknown" transfer:"unknown" views:"main" colorManagement:"Nuke"
+version 13.0 v2
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="1363" h="696" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="700" stretch="1"/>
+            <splitter orientation="2">
+                <split size="384"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="270"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+inputs 0
+name "C:/Users/lenovo/Desktop/NUKE/Getting Started with NUKE/RobotShooting.nk"
+last_frame 70
+lock_range true
+format "1280 720 0 0 1280 720 1 HD_720"
+proxy_type scale
+proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+colorManagement Nuke
+workingSpaceLUT linear
+monitorLut sRGB
+monitorOutLUT rec709
+int8Lut sRGB
+int16Lut sRGB
+logLut Cineon
+floatLut linear
+}
+Read {
+inputs 0
+file_type targa
+file "C:/Users/lenovo/Desktop/NUKE/Getting Started with NUKE/Reference files/heat/Gun_Heat.####.tga"
+format "1280 720 0 0 1280 720 1 HD_720"
+last 70
+origlast 70
+origset true
+name Read3
+xpos 511
+ypos -118
+}
+Dot {
+name Dot1
+xpos 545
+ypos 90
+}
+Read {
+inputs 0
+file_type targa
+file "C:/Users/lenovo/Desktop/NUKE/Getting Started with NUKE/Reference files/ground Shad/Ground_Shadow.####.tga"
+format "1280 720 0 0 1280 720 1 HD_720"
+last 70
+origlast 70
+origset true
+name Read2
+xpos 348
+ypos -110
+}
+Dot {
+name Dot2
+xpos 382
+ypos 48
+}
+Read {
+inputs 0
+file_type targa
+file "C:/Users/lenovo/Desktop/NUKE/Getting Started with NUKE/Reference files/beauty/Beauty.####.tga"
+format "1280 720 0 0 1280 720 1 HD_720"
+last 70
+origlast 70
+origset true
+name Read4
+xpos 195
+ypos -129
+}
+Grade {
+black {0.003346534446 0.002731742803 0.002731742803 0}
+white {0.9911019802 0.9999998808 0.9999998808 0}
+maskChannelInput rgba.alpha
+name Grade1
+xpos 195
+}
+Merge2 {
+inputs 2
+operation under
+mix 0.605
+name Merge2
+xpos 195
+ypos 45
+}
+Merge2 {
+inputs 2
+mix {{curve x14 0 x18 1}}
+name Merge3
+xpos 195
+ypos 87
+}
+Blur {
+size {{curve x1 4.4 x13 1.3}}
+name Blur2
+xpos 195
+ypos 123
+}
+Transform {
+translate {{Tracker1.translate} {Tracker1.translate}}
+center {640 360}
+name Transform1
+xpos 195
+ypos 168
+}
+set N5ffe400 [stack 0]
+Tracker4 {
+tracks { { 1 31 1 } 
+{ { 5 1 20 enable e 1 } 
+{ 3 1 75 name name 1 } 
+{ 2 1 58 track_x track_x 1 } 
+{ 2 1 58 track_y track_y 1 } 
+{ 2 1 63 offset_x offset_x 1 } 
+{ 2 1 63 offset_y offset_y 1 } 
+{ 4 1 27 T T 1 } 
+{ 4 1 27 R R 1 } 
+{ 4 1 27 S S 1 } 
+{ 2 0 45 error error 1 } 
+{ 1 1 0 error_min error_min 1 } 
+{ 1 1 0 error_max error_max 1 } 
+{ 1 1 0 pattern_x pattern_x 1 } 
+{ 1 1 0 pattern_y pattern_y 1 } 
+{ 1 1 0 pattern_r pattern_r 1 } 
+{ 1 1 0 pattern_t pattern_t 1 } 
+{ 1 1 0 search_x search_x 1 } 
+{ 1 1 0 search_y search_y 1 } 
+{ 1 1 0 search_r search_r 1 } 
+{ 1 1 0 search_t search_t 1 } 
+{ 2 1 0 key_track key_track 1 } 
+{ 2 1 0 key_search_x key_search_x 1 } 
+{ 2 1 0 key_search_y key_search_y 1 } 
+{ 2 1 0 key_search_r key_search_r 1 } 
+{ 2 1 0 key_search_t key_search_t 1 } 
+{ 2 1 0 key_track_x key_track_x 1 } 
+{ 2 1 0 key_track_y key_track_y 1 } 
+{ 2 1 0 key_track_r key_track_r 1 } 
+{ 2 1 0 key_track_t key_track_t 1 } 
+{ 2 1 0 key_centre_offset_x key_centre_offset_x 1 } 
+{ 2 1 0 key_centre_offset_y key_centre_offset_y 1 } 
+} 
+{ 
+ { {curve K x20 1} "track 1" {curve x16 944.7000122 931 934.2999878 936.0415649 937.2000122 938.5640259 939.5734253 933.0535278 936.1268921 938.4478149 940.2000122 940.9076538 940.354187 938.5269165 938.3978271 939.2269287 940.6051636 942.7999878 944.5400391 946.5811768 948.9541016 950.3601074 950.0812988 949.3652954 947.9555664 946.2578735 944.3397827 942.7539063 940.8804321 938.8634033 936.7564697 935.0397949 933.1194458 932.0049438 930.9165039 930.1838379 929.6243286 928.9000244 928.3294067 927.8945923 927.0147705 926.8443604 925.9916992 925.6609497 924.8079834 923.9614868 923.3400269 922.6688232 922.0999756 921.6610718 920.9321289 920.0106812 919.4633179 918.8657837 918.081604} {curve x16 570.7999878 587 618 638.1871948 653.7999878 660.8709106 661.4414063 653.7410278 650.1488647 655.09552 661.7999878 664.1208496 666.9273682 664.9200439 661.0727539 655.1744385 651.8551025 651.4000244 651.4712524 651.288269 651.013855 650.8535156 650.9353027 651.1016846 651.4104614 651.6368408 651.9174805 652.1832275 652.5089111 652.8164673 653.1213379 653.4042358 653.6094971 653.7779541 653.8546753 653.8607178 653.8986206 654.2000122 654.1538086 654.1207275 654.0455933 654.1546631 654.114563 654.1495972 654.0533447 654.0973511 654.3599854 654.5070801 654.5 654.5385132 654.6029663 654.6509399 654.6948853 654.6766357 654.5771484} {curve K x20 0} {curve K x20 0} 1 0 0 {curve x16 0 0 0 0.0008239255393 0 0.0003192695104 0.0004386953092 0.0006629332713 0.0004738074013 0.0006010328214 0.0004458305258 0.0002871791033 0.0006809985942 0.0003938508297 0.0009226085023 0.0001167981739 0.0001815753254 0 7.927792253e-05 0.0002518819897 0.0003105362009 0.0004789412917 0.0007893659965 0.0005118758903 0.0005124654485 0.0005271699275 0.0005839019799 0.0003539597671 0.0003700877657 0.0003126857467 0.0004105599637 0.0002595877559 0.0004441748293 0.0003055704717 0.000324283697 0.000460529908 0.0003088753653 0 1.673336805e-05 1.478071883e-05 3.281833695e-05 1.581800251e-05 3.379729001e-05 2.483126684e-05 3.552385582e-05 5.368281239e-06 0 9.233743728e-06 0 4.449137543e-05 4.679121734e-05 7.72179939e-05 7.412489636e-05 5.101341705e-05 1.456296488e-05} 0 0.0299322 -20 -20 20 20 -19.8 -18.8 19.8 18.8 {curve} {curve x16 905 891 894 x20 897 x33 903 x53 889 x62 883 x64 882} {curve x16 532 548 579 x20 615 x33 612 x53 615 x62 615 x64 615} {curve x16 984 970 973 x20 976 x33 982 x53 968 x62 962 x64 961} {curve x16 609 625 656 x20 692 x33 689 x53 692 x62 692 x64 692} {curve x16 925 911 914 x20 917 x33 923 x53 909 x62 903 x64 902} {curve x16 551 567 598 x20 634 x33 631 x53 634 x62 634 x64 634} {curve x16 964 950 953 x20 956 x33 962 x53 948 x62 942 x64 941} {curve x16 590 606 637 x20 673 x33 670 x53 673 x62 673 x64 673} {curve x16 19.20001221 19.5 19.79998779 x20 19.70001221 x33 19.29998779 x53 19.40002441 x62 19.84002686 x64 19.59997559} {curve x16 19.29998779 19.5 19.5 x20 19.29998779 x33 19.90002441 x53 19.70001221 x62 19.85998535 x64 20}  } 
+} 
+}
+
+translate {{curve x16 0 -13.70001221 -10.40002441 -8.658447266 -7.5 -6.135986328 -5.126586914 -11.64648438 -8.573120117 -6.252197266 -4.5 -3.792358398 -4.345825195 -6.173095703 -6.302185059 -5.473083496 -4.094848633 -1.900024414 -0.1599731445 1.881164551 4.254089355 5.660095215 5.381286621 4.665283203 3.255554199 1.557861328 -0.3602294922 -1.946105957 -3.819580078 -5.836608887 -7.94354248 -9.660217285 -11.58056641 -12.69506836 -13.7835083 -14.51617432 -15.07568359 -15.79998779 -16.37060547 -16.80541992 -17.6852417 -17.85565186 -18.70831299 -19.0390625 -19.89202881 -20.73852539 -21.35998535 -22.03118896 -22.60003662 -23.03894043 -23.7678833 -24.68933105 -25.23669434 -25.83422852 -26.6184082} {curve x16 0 16.20001221 47.20001221 67.38720703 83 90.07092285 90.64141846 82.94104004 79.34887695 84.29553223 91 93.32086182 96.12738037 94.12005615 90.27276611 84.37445068 81.05511475 80.60003662 80.67126465 80.48828125 80.21386719 80.05352783 80.13531494 80.30169678 80.61047363 80.83685303 81.11749268 81.38323975 81.70892334 82.01647949 82.3213501 82.60424805 82.80950928 82.97796631 83.0546875 83.06072998 83.09863281 83.40002441 83.3538208 83.32073975 83.24560547 83.35467529 83.3145752 83.34960938 83.25335693 83.29736328 83.55999756 83.70709229 83.70001221 83.73852539 83.80297852 83.85095215 83.89489746 83.87664795 83.77716064}}
+center {{curve x16 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122 944.7000122} {curve x16 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878 570.7999878}}
+name Tracker2
+xpos 351
+ypos 168
+}
+push $N5ffe400
+Flare {
+position {{Tracker2.tracks.1.track_x} {Tracker2.tracks.1.track_y}}
+radius {0 119.33 500}
+size_mult 0.7
+anamorph 2
+ring_color {3 2.6 2}
+inner_color 0
+outer_falloff 3.1
+inner_falloff 0.1
+chroma_spread {{curve x20 -0.25 x38 0.25}}
+chroma_shift -1.8
+brightness {{curve x20 0 x29 1 x30 1 x38 0}}
+asym_multiplier 0
+asym_falloff 2.2
+asym_angle 44
+asym_angle_add true
+name wide_flare
+xpos 195
+ypos 201
+}
+Flare {
+position {{Tracker2.tracks.1.track_x} {Tracker2.tracks.1.track_y}}
+radius {0 0 59.57}
+ring_color {3 2.6 2}
+outer_falloff 5.2
+chroma_spread 0.08
+chroma_shift -2
+brightness {{curve x16 0 x20 1 x37 1 x70 0}}
+name round_flare
+xpos 195
+ypos 233
+}
+Roto {
+inputs 0
+output alpha
+curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 512}
+    {t x44200000 x43b40000}
+    {a fx x42c80000 fy x42c80000}
+    {curvegroup Bezier1 512 bezier
+     {{cc
+       {f 8192}
+       {px x41c00000
+        {x41e00000 x43860000}
+        {x43520000 x44470000}
+        {xc1e00000 xc3860000}
+        {xc2ac0000 x42200000}
+        {x43a0ffff x43830000}
+        {x42ac0000 xc2200000}
+        {0 0}
+        {x44ac4000 x43810000}
+        {0 0}
+        {0 0}
+        {x44b5c000 x446b0000}
+        {0 0}}}     idem}
+     {tx x41c00000 x44538000 x440c4000}
+     {a str 1 spx x44200000 spy x43b40000 sb 1 ltn x41c00000 ltm x41c00000 tt x40800000}}}}}}
+toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier ro 0 go 0 bo 0 ao 0 str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+toolbar_brush_hardness 0.200000003
+toolbar_source_transform_scale {1 1}
+toolbar_source_transform_center {640 360}
+colorOverlay {0 0 0 0}
+lifetime_type "all frames"
+lifetime_start 24
+lifetime_end 24
+view {}
+motionblur_on true
+motionblur_shutter_offset_type centred
+feather 100
+source_black_outside true
+name Roto2
+xpos -524
+ypos 75
+}
+Roto {
+inputs 0
+output alpha
+curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 512}
+    {t x44200000 x43b40000}
+    {a}
+    {curvegroup Bezier1 512 bezier
+     {{cc
+       {f 8192}
+       {px
+        {1 x428c0000}
+        {{{x3fa87e00 -}}
+      {{x4175d480 -}}}
+        {{{x43ff6666 0 1 xbda33f13 1}
+       {x43fba665 xbda33f13 1 0 1}}
+      {{x43f38000 0 1 xbbed7304 1}
+       {x43f28000 xbbed7304 1 0 1}}}
+        {{{x40933380 -}}
+      {{1 -}}}
+        {{{xc0933380 -}}
+      {{xc0933300 -}}}
+        {{{x44026666 0 1 xbda33f13 1}
+       {x44008666 xbda33f13 1 0 1}}
+      {{x43f4999a 0 1 xbbed7304 1}
+       {x43f3999a xbbed7304 1 0 1}}}
+        {{{x40400000 -}}
+      {{xc0199a00 -}}}
+        {{{0 -}}
+      {{0 -}}}
+        {{{x44064000 0 1 xbda33f13 1}
+       {x44046000 xbda33f13 1 0 1}}
+      {{x43f43333 0 1 xbbed7304 1}
+       {x43f33333 xbbed7304 1 0 1}}}
+        {{{0 -}}
+      {{0 -}}}
+        {{{xbfb33400 -}}
+      {{xc17ccce0 -}}}
+        {{{x4408a666 0 1 xbda33f13 1}
+       {x4406c666 xbda33f13 1 0 1}}
+      {{x43fb4ccd 0 1 xbbed7304 1}
+       {x43fa4ccd xbbed7304 1 0 1}}}
+        {{{x3fe66800 -}}
+      {{x40000000 -}}}
+        {{{0 -}}
+      {{0 -}}}
+        {{{x44078222 0 1 xbda33f13 1}
+       {x4405a222 xbda33f13 1 0 1}}
+      {{x43fba666 0 1 xbbed7304 1}
+       {x43faa666 xbbed7304 1 0 1}}}
+        {{{0 -}}
+      {{0 -}}}
+        {{{x415cccc0 -}}
+      {{xc0a00000 -}}}
+        {{{x4406cccd 0 1 xbda33f13 1}
+       {x4404eccc xbda33f13 1 0 1}}
+      {{x44098000 0 1 xbbed7304 1}
+       {x44090000 xbbed7304 1 0 1}}}
+        {{{xc0d99980 -}}
+      {{0 -}}}
+        {{{0 -}}
+      {{0 -}}}
+        {{{x43e88000 0 1 xbda33f13 1}
+       {x43e4bfff xbda33f13 1 0 1}}
+      {{x440a0000 0 1 xbbed7304 1}
+       {x44098000 xbbed7304 1 0 1}}}
+        {{{0 -}}
+      {{0 -}}}
+        {{{x40ecccc0 -}}
+      {{xc0a00000 -}}}
+        {{{x43cfb333 0 1 xbda33f13 1}
+       {x43cbf332 xbda33f13 1 0 1}}
+      {{x4411999a 0 1 xbbed7304 1}
+       {x4411199a xbbed7304 1 0 1}}}
+        {{{xc0333300 -}}
+      {{x40a00000 -}}}
+        {{{x41833330 -}}
+      {{xc0599900 -}}}
+        {{{x43c70000 0 1 xbda33f13 1}
+       {x43c33fff xbda33f13 1 0 1}}
+      {{x44178ccd 0 1 xbbed7304 1}
+       {x44170ccd xbbed7304 1 0 1}}}
+        {{{xc15cccc0 -}}
+      {{xbeccd000 -}}}
+        {{{0 -}}
+      {{0 -}}}
+        {{{x43bfb333 0 1 xbdde9c0f 1}
+       {x43b96c75 xbdde9c0f 1 0 1}}
+      {{x44172666 0 1 xbced7304 1}
+       {x441704b7 xbced7304 1 0 1}}}
+        {{{0 -}}
+      {{0 -}}}
+        {{{0 -}}
+      {{0 -}}}
+        {{{x43bfb333 0 1 xbdde9c0f 1}
+       {x43b96c75 xbdde9c0f 1 0 1}}
+      {{x44140000 0 1 xbced7304 1}
+       {x4413de51 xbced7304 1 0 1}}}
+        {{{0 -}}
+      {{0 -}}}
+        {{{xc238ccc8 -}}
+      {{x4200ccc0 -}}}
+        {{{x43eacccd 0 1 xbda33f13 1}
+       {x43e70ccc xbda33f13 1 0 1}}
+      {{x44096666 0 1 xbbed7304 1}
+       {x4408e666 xbbed7304 1 0 1}}}
+        {{{x3f999900 -}}
+      {{xbe4cc000 -}}}
+        {{{xbf199a00 -}}
+      {{x40f33300 -}}}
+        {{{x43fd4ccd 0 1 xbda33f13 1}
+       {x43f98ccc xbda33f13 1 0 1}}
+      {{x44070000 0 1 xbbed7304 1}
+       {x44068000 xbbed7304 1 0 1}}}
+        {{{1 -}}
+      {{xc1700000 -}}}
+        {{{0 -}}
+      {{0 -}}}
+        {{{x43fe3333 0 1 xbda33f13 1}
+       {x43fa7332 xbda33f13 1 0 1}}
+      {{x44012666 0 1 xbbed7304 1}
+       {x4400a666 xbbed7304 1 0 1}}}
+        {{{0 -}}
+      {{0 -}}}}}     idem}
+     {tx 1 x43f038af x44071d42}
+     {a str 1 spx x44200000 spy x43b40000 sb 1 tt x40800000}}}}}}
+toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 1 }
+  { selectCurves str 1 ssx 1 ssy 1 sf 1 }
+  { selectPoints str 1 ssx 1 ssy 1 sf 1 }
+  { selectFeatherPoints str 1 ssx 1 ssy 1 sf 1 }
+  { createBezier ro 0 go 0 bo 0 ao 0 str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+toolbar_brush_hardness 0.200000003
+toolbar_source_transform_scale {1 1}
+toolbar_source_transform_center {640 360}
+colorOverlay {0 0 0 0}
+lifetime_type "all frames"
+view {}
+motionblur_on true
+motionblur_shutter_offset_type centred
+source_black_outside true
+name Roto1
+xpos -521
+ypos 23
+}
+Read {
+inputs 0
+file_type png
+file "C:/Users/lenovo/Desktop/NUKE/Getting Started with NUKE/Reference files/StreetBackground/StreetBg_9909559_#####.png"
+format "1280 720 0 0 1280 720 1 HD_720"
+last 70
+origlast 70
+origset true
+name Read1
+xpos -361
+ypos -125
+}
+set N5ffc400 [stack 0]
+RotoPaint {
+curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 512}
+    {t x44200000 x43b40000}
+    {a}
+    {cubiccurve Blur1 512 catmullrom
+     {cc
+      {f 2080}
+      {px 1
+       {x4457a000 x442bc000 1}
+       {x4457a000 x442c0000 1}
+       {x44576000 x442c0000 1}
+       {x44572000 x442c0000 1}
+       {x4456e000 x442c0000 1}
+       {x4456a000 x442c0000 1}
+       {x44566000 x442c0000 1}
+       {x44562000 x442bc000 1}
+       {x44560000 x442b8000 1}
+       {x4455e000 x442b4000 1}
+       {x4455e000 x442b0000 1}
+       {x4455e000 x442ac000 1}
+       {x4455e000 x442a8000 1}
+       {x44562000 x442a4000 1}
+       {x44566000 x442a2000 1}
+       {x4456a000 x442a0000 1}
+       {x4456e000 x442a0000 1}
+       {x44572000 x442a0000 1}
+       {x44576000 x442a0000 1}
+       {x4457a000 x442a0000 1}
+       {x4457e000 x442a0000 1}
+       {x44584000 x442a0000 1}
+       {x4458a000 x442a4000 1}
+       {x4458e000 x442a6000 1}
+       {x4458e000 x442aa000 1}
+       {x4458e000 x442ae000 1}
+       {x44590000 x442b2000 1}
+       {x44590000 x442b6000 1}
+       {x44590000 x442ba000 1}
+       {x44590000 x442c0000 1}
+       {x4458e000 x442c4000 1}
+       {x4458a000 x442c8000 1}
+       {x44586000 x442cc000 1}
+       {x44582000 x442ce000 1}
+       {x4457e000 x442d2000 1}
+       {x4457a000 x442d2000 1}
+       {x44576000 x442d2000 1}
+       {x44572000 x442d4000 1}
+       {x4456e000 x442d4000 1}
+       {x4456a000 x442d4000 1}
+       {x44566000 x442d4000 1}
+       {x44562000 x442d4000 1}
+       {x4455e000 x442d4000 1}
+       {x4455a000 x442d0000 1}
+       {x44558000 x442cc000 1}
+       {x44556000 x442c8000 1}
+       {x44554000 x442c4000 1}
+       {x44554000 x442c0000 1}
+       {x44554000 x442bc000 1}
+       {x44554000 x442b8000 1}
+       {x44554000 x442b4000 1}
+       {x44558000 x442b2000 1}
+       {x4455a000 x442ae000 1}
+       {x4455e000 x442ac000 1}
+       {x44562000 x442aa000 1}
+       {x44566000 x442a8000 1}
+       {x44570000 x442a4000 1}
+       {x44574000 x442a2000 1}}}
+     {t
+   {{1 x4456f34f -}
+    {x428c0000}}
+   {{1 x442b8b96 -}
+    {x428c0000}}
+   {{1 0}}
+   {{1 0 0 1 xbd7f420b 1}
+    {x428c0000 xc089999a xbd7f420b 1 0 1}}
+   {{1 0 0 1 x3c55b450 1}
+    {x428c0000 x3f666666 x3c55b450 1 0 1}}
+   {{1 0}}
+   {{1 0}}
+   {{1 0}}
+   {{1 0 -}
+    {x428c0000}}
+   {{1 1 -}
+    {x428c0000}}
+   {{1 1 -}
+    {x428c0000}}
+   {{1 1}}
+   {{1 0 -}
+    {x428c0000}}
+   {{1 0 -}
+    {x428c0000}}
+   {{1 0}}
+   {{1 0}}
+   {{1 0}}
+   {{1 0}}
+   {{1 0}}
+   {{1 1}}
+   {{1 0}}
+   {{1 0}}
+   {{1 0}}
+   {{1 0}}
+   {{1 1}}
+   {{1 0}}
+   {{1 0}}
+   {{1 0}}
+   {{1 0}}
+   {{1 1}}
+   {{1 0}}
+   {{1 0}}
+   {{1 0}}
+   {{1 0}}
+   {{1 1}}}
+     {a ro 0 go 0 bo 0 ao 0 bt x40000000 bu 1 src 1 str 1 spx x44200000 spy x43b40000 sb 1 ep1 x41700000 tt x41b00000}}}}}}
+toolbox {selectAll {
+  { selectAll src 1 str 1 ssx 1 ssy 1 sf 1 ep1 15 }
+  { createBezier ro 0 go 0 bo 0 ao 0 str 1 ssx 1 ssy 1 sf 1 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 tt 22 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 1 sb 1 }
+} }
+toolbar_brush_hardness 0.200000003
+toolbar_lifetime_type single
+toolbar_effect_parameter1 15
+toolbar_paint_source fg
+toolbar_source_transform_scale {1 1}
+toolbar_source_transform_center {640 360}
+colorOverlay {0 0 0 0}
+paint_source foreground
+lifetime_type "all frames"
+view {}
+motionblur_on true
+motionblur_shutter_offset_type centred
+brush_type blur
+brush_spacing 0.05000000075
+brush_hardness 0.200000003
+effect_parameter1 15
+source_black_outside true
+name RotoPaint1
+xpos -361
+ypos -4
+}
+ColorCorrect {
+inputs 1+1
+saturation 0.15
+name ColorCorrect1
+xpos -361
+ypos 28
+}
+Blur {
+inputs 1+1
+size 8
+name Blur1
+xpos -361
+ypos 75
+}
+Merge2 {
+inputs 2
+name Merge1
+xpos -361
+ypos 233
+}
+Write {
+file "C:/Users/lenovo/Desktop/NUKE/Getting Started with NUKE/RobotShooting/RobotShooting_###.mov"
+file_type mov
+mov64_format "mov (QuickTime / MOV)"
+mov64_codec h264
+mov_h264_codec_profile "High 4:2:0 8-bit"
+mov64_pixel_format {{0}}
+mov64_quality High
+mov64_fast_start true
+mov64_write_timecode true
+mov64_gop_size 12
+mov64_b_frames 0
+mov64_bitrate 28000
+mov64_bitrate_tolerance 0
+mov64_quality_min 1
+mov64_quality_max 3
+checkHashOnRead false
+version 4
+name Write1
+selected true
+xpos -361
+ypos 299
+}
+Viewer {
+frame 1
+frame_range 1-70
+input_process false
+name Viewer1
+xpos -361
+ypos 353
+}
+push $N5ffc400
+Tracker4 {
+tracks { { 1 31 1 } 
+{ { 5 1 20 enable e 1 } 
+{ 3 1 75 name name 1 } 
+{ 2 1 58 track_x track_x 1 } 
+{ 2 1 58 track_y track_y 1 } 
+{ 2 1 63 offset_x offset_x 1 } 
+{ 2 1 63 offset_y offset_y 1 } 
+{ 4 1 27 T T 1 } 
+{ 4 1 27 R R 1 } 
+{ 4 1 27 S S 1 } 
+{ 2 0 45 error error 1 } 
+{ 1 1 0 error_min error_min 1 } 
+{ 1 1 0 error_max error_max 1 } 
+{ 1 1 0 pattern_x pattern_x 1 } 
+{ 1 1 0 pattern_y pattern_y 1 } 
+{ 1 1 0 pattern_r pattern_r 1 } 
+{ 1 1 0 pattern_t pattern_t 1 } 
+{ 1 1 0 search_x search_x 1 } 
+{ 1 1 0 search_y search_y 1 } 
+{ 1 1 0 search_r search_r 1 } 
+{ 1 1 0 search_t search_t 1 } 
+{ 2 1 0 key_track key_track 1 } 
+{ 2 1 0 key_search_x key_search_x 1 } 
+{ 2 1 0 key_search_y key_search_y 1 } 
+{ 2 1 0 key_search_r key_search_r 1 } 
+{ 2 1 0 key_search_t key_search_t 1 } 
+{ 2 1 0 key_track_x key_track_x 1 } 
+{ 2 1 0 key_track_y key_track_y 1 } 
+{ 2 1 0 key_track_r key_track_r 1 } 
+{ 2 1 0 key_track_t key_track_t 1 } 
+{ 2 1 0 key_centre_offset_x key_centre_offset_x 1 } 
+{ 2 1 0 key_centre_offset_y key_centre_offset_y 1 } 
+} 
+{ 
+ { {curve K x1 1} "track 1" {curve x1 827.2000122 827.0317383 825.3328247 824.5093994 823.5834961 822.890625 822.3533936 821.0808716 820.0267334 819.048645 818.399292 817.5944214 816.9932251 815.7962036 814.4631958 813.7938232 813.7146606 812.8258667 812.0341187 811.3181763 810.4493408 810.2733765 809.0178833 808.480896 807.3936157 807.1699829 805.8721924 805.4575806 804.8012695 803.6205444 803.1523438 802.5476074 801.6286621 800.9314575 800.0066528 799.2197266 798.7435913 798.0615234 797.4855957 796.9365845 795.9904175 794.7451172 794.7341309 794.3147583 793.7353516 792.9276733 792.9125366 791.8620605 791.2720947 791.215271 789.9064941 789.4672241 788.9285889 788.2002563 787.6138306 787.4700928 786.310791 786.3361816 785.6859131 784.4365234 783.7426147 783.5337524 782.7702026 781.8272095 781.4860229 780.8540039 779.7722778 779.690979 778.4980469 777.8431396} {curve x1 43.20000076 43.2662735 43.08398819 43.84276199 43.63098907 43.71934509 43.72893524 43.5415802 43.32191849 43.54611588 43.82133102 43.64597702 43.71225357 44.01121902 43.72557831 43.72507095 43.813694 44.11047363 43.7638092 43.79866409 43.96774673 43.89883423 43.80002213 43.58780289 43.56751633 43.85327911 43.57393646 43.75033951 43.71533203 43.64235306 43.83514786 44.0020752 43.65519333 43.64437485 43.89263535 43.61509323 43.71112061 43.69682312 43.49102402 43.45575714 43.77918243 43.71086502 43.66954803 43.74359512 43.75716782 43.72886276 43.962883 43.83514023 43.79204178 44.10938644 43.84737778 43.88893127 44.15362167 43.91320801 43.71541977 43.98318481 43.7010231 44.10791397 43.93728256 43.67902374 43.72891235 44.11231232 43.92683029 43.76566315 43.99688721 44.02207565 44.04351807 44.31858826 44.06968689 43.9679718} {curve K x1 0} {curve K x1 0} 1 0 0 {curve x1 0 8.342347288e-06 7.204479025e-06 9.538577479e-06 1.37325753e-05 9.497172086e-06 7.048646114e-06 1.067511835e-05 7.378116396e-06 7.378107569e-06 7.710753167e-06 7.991752569e-06 7.183999438e-06 8.615602325e-06 5.936561329e-06 8.369936366e-06 1.140299028e-05 6.562425619e-06 5.129274283e-06 8.707674851e-06 7.236677456e-06 9.498670564e-06 1.277079538e-05 9.463313155e-06 6.529067376e-06 1.34669155e-05 1.088085015e-05 8.129695745e-06 6.909007797e-06 7.879013885e-06 1.001442025e-05 1.149877546e-05 6.086876126e-06 1.078366625e-05 7.919693904e-06 9.850679695e-06 8.012377311e-06 5.592532458e-06 7.727353259e-06 8.412409291e-06 6.990578989e-06 7.55752629e-06 9.365385814e-06 7.955542941e-06 6.815098525e-06 7.94235031e-06 9.316055379e-06 1.075790113e-05 8.305405232e-06 1.024063974e-05 6.935734147e-06 8.867537535e-06 7.540834135e-06 9.471073592e-06 8.46241138e-06 8.296186688e-06 1.016605233e-05 9.660252084e-06 7.146863087e-06 6.67362364e-06 7.411377402e-06 9.009684297e-06 9.757124847e-06 8.818342132e-06 9.35184894e-06 9.63672985e-06 6.552110847e-06 8.34281914e-06 1.052405241e-05 1.160504157e-05} 0 1.37326e-05 -9.20001 -9.2 9.20001 9.2 -11.6 -10.8 11.6 10.8 {curve} {curve x1 806} {curve x1 23} {curve x1 847} {curve x1 62} {curve x1 818} {curve x1 34} {curve x1 835} {curve x1 51} {curve x1 8.700012207} {curve x1 8.700000763}  } 
+} 
+}
+
+smoothT 2
+translate {{curve x1 0 -0.6223958333 -1.519266764 -2.668680827 -3.482747396 -4.201416016 -5.035624186 -5.99025472 -7.091837565 -7.985697428 -8.796468099 -9.481608073 -10.3493042 -11.39304606 -12.45951335 -13.153361 -13.69913737 -14.28570557 -15.08453369 -15.87670898 -16.46362305 -17.23038737 -17.88653564 -18.84645589 -19.46242269 -20.33199056 -20.97733561 -21.76690674 -22.51745605 -23.28586833 -24.03708903 -24.7010498 -25.44134521 -26.28833008 -27.09130859 -27.82059733 -28.4689738 -29.04701742 -29.64935303 -30.33972168 -31.25321452 -31.98736572 -32.54591878 -32.88250732 -33.48465983 -33.95206706 -34.5764974 -35.12835693 -35.69411214 -36.34596761 -36.94759115 -37.70981852 -38.27856445 -38.8963623 -39.38252767 -40.01234945 -40.43823242 -41.03295898 -41.65771484 -42.52223714 -43.23962402 -43.79506429 -44.43353271 -45.11610921 -45.75484212 -46.43981934 -47.03816732 -47.82348633 -48.46653239 -49.08247884} {curve x1 0 -0.03867085775 0.1755828857 0.2971547445 0.5089403788 0.4709981283 0.4411951701 0.308719635 0.2477798462 0.3410301208 0.4490496318 0.5044288635 0.5677248637 0.5942586263 0.5985310872 0.5326894124 0.660987854 0.6739006042 0.6688906352 0.6213150024 0.6663233439 0.6667760213 0.5401280721 0.4296887716 0.4474411011 0.4428189596 0.5037600199 0.4577776591 0.4805831909 0.5088526408 0.6044336955 0.6087137858 0.5451227824 0.5086428324 0.4952761332 0.5175247192 0.4522539775 0.4108975728 0.3257764181 0.3532295227 0.4265098572 0.4977734884 0.4859110514 0.5013453166 0.5211168925 0.5942128499 0.620203654 0.641263326 0.6900978088 0.6941769918 0.7264734904 0.7412185669 0.7631619771 0.7053248088 0.6485125224 0.5777842204 0.7086156209 0.6933148702 0.6859817505 0.559647878 0.6179911296 0.7005933126 0.7128435771 0.6743685404 0.7061169942 0.7987353007 0.905968984 0.9218393962 0.8966573079 0.7797851563}}
+center {{curve x1 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122 827.2000122} {curve x1 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076 43.20000076}}
+name Tracker1
+xpos -526
+ypos -58
+}
